@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
         document.querySelectorAll("#variations > li > div > div > div > div > a").forEach(item => {
             item.addEventListener("click", () => {
                 const downloadLink = item.href
-                item.href = "#"
+                item.href = "javascript:void(0)"
                 chrome.storage.local.get("booth_history", result => {
                     if (!result.booth_history)
                     {
