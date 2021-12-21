@@ -1,3 +1,9 @@
+(() => {
+    document.querySelectorAll("#variations > li > div > div > div > div > a").forEach(item => {
+        item.style.display ="none"
+    })
+})()
+
 window.addEventListener("load", () => {
     const title = document.querySelector("h2").innerText
     if("無料ダウンロード"==document.querySelector("#variations > li > div > div > div > div > a > div > span").innerText)
@@ -21,6 +27,7 @@ window.addEventListener("load", () => {
                 })
                 window.location.href = downloadLink
             })
+            item.style.display ="block"
         })
     }
 })
