@@ -1,16 +1,6 @@
 chrome.storage.local.get("booth_history", (result) => {
     const storage = encodeURI(JSON.stringify(result.booth_history)).replace(/%../g, "*").length/1000
     document.querySelector("#storage").innerText = `ストレージ使用量：${storage.toFixed(1)}MB / 5.0MB`
-    
-    for(let key in result.booth_history)
-    {
-        document.querySelector("#main").innerHTML += `<li><a href="${key}" target="_blank">${result.booth_history[key]}</li>`
-    }
-
-    if(storage > 4.5)
-    {
-        alert("ストレージの使用量が4.5MB以上になりました。「履歴の保存」と「履歴の全削除」を行ってください。保存できなくなります")
-    }
 
     if(storage.toFixed(1) == 0.0)
     {
@@ -18,6 +8,23 @@ chrome.storage.local.get("booth_history", (result) => {
         document.querySelector("#download").style.display ="none"
         document.querySelector("#delete").style.display ="none"
     }
+    else
+    {
+        const object = result.booth_history
+        const array = Object.keys(object).map((e)=>({ key: e, value: object[e] }))
+        array.sort((a,b)=>{ if(a.value < b.value) return 1; if(a.value > b.value) return -1; return 0;})
+    
+        for(let item of array)
+        {
+            document.querySelector("#main").innerHTML += `<li><a href="${item.key}" target="_blank">${item.value}</li>`
+        }
+    }
+
+    if(storage > 4.5)
+    {
+        alert("ストレージの使用量が4.5MB以上になりました。「履歴の保存」と「履歴の全削除」を行ってください。保存できなくなります")
+    }
+
 })
 
 document.querySelector("#delete").addEventListener("click", () =>
