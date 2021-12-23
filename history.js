@@ -38,7 +38,7 @@ const download = (text, type) =>
 
 document.querySelector("#download").addEventListener("click", () => {
     chrome.storage.local.get("booth_history", (result) => {
-        const csv = [`"リンク" , "商品名"`]
+        const csv = [`"リンク" , "管理名称"`]
         const html = ["<h1>ダウンロード履歴</h1>"]
         Object.keys(result.booth_history).forEach((key)=>{
             csv.push(`"${key}" , "${result.booth_history[key]}"`)
