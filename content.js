@@ -1,9 +1,5 @@
 (() => {
     document.querySelectorAll("#variations > li > div > div > div > div > a").forEach(item => item.style.display = "none")
-    chrome.webRequest.onHeadersReceived.addListener((detail) => {
-        const headers = detail.responseHeaders.filter(e => e.name !== "Content-Security-Policy")
-        return {responseHeaders: headers}
-    }, {urls: ["<all_urls>"]}, ["blocking", "responseHeaders"])
 })()
 const title = document.querySelector("h2").innerText
 const author = document.querySelector(".u-text-ellipsis").innerText
