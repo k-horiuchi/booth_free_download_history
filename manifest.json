@@ -1,19 +1,17 @@
 {
   "name": "booth無料ダウンロード履歴",
   "short_name": "booth log",
-  "version": "1.0",
+  "version": "2.0",
   "description": "boothの無料ダウンロード履歴を付ける拡張機能です。",
-  "manifest_version": 2,
-  "permissions":[
-    "storage"
-  ],
+  "manifest_version": 3,
+  "permissions":["storage", "unlimitedStorage"],
   "content_scripts": [
     {
       "matches": ["*://booth.pm/ja/items/*"],
       "js": ["content.js"]
     }
   ],
-  "browser_action":{
+  "action":{
     "default_popup": "history.html"
   },
   "options_page": "history.html"
