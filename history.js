@@ -40,9 +40,12 @@ document.querySelector("#download").addEventListener("click", () => {
     chrome.storage.local.get("booth_history", (result) => {
         const csv = [`"リンク" , "管理名称"`]
         const html = ["<h1>ダウンロード履歴</h1>"]
-        Object.keys(result.booth_history).forEach((key)=>{
-            csv.push(`"${key}" , "${result.booth_history[key]}"`)
-            html.push(`<li><a href="${key}" target="_blank">${result.booth_history[key]}</li>`)
+        const object = result.booth_history
+        const array = Object.keys(object).map((e)=>({ key: e, value: object[e] }))
+        array.sort((a,b)=>{ if(a.value < b.value) return 1; if(a.value > b.value) return -1; return 0;})
+        array.forEach(item => {
+            csv.push(`"${item.key}" , "${item.value}"`)
+            html.push(`<li><a href="${item.key}" target="_blank">${item.value}</li>`)
         })
         download(html, "html")
         download(csv, "csv")
