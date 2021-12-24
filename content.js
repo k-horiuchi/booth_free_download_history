@@ -4,7 +4,8 @@
 const title = document.querySelector("h2").innerText
 const author = document.querySelector(".u-text-ellipsis").innerText
 window.addEventListener("load", () => {
-    if("無料ダウンロード" == document.querySelector("#variations > li > div > div > div > div > a > div > span").innerText) {
+    if(document.querySelector("#variations > li > div > div > div > div > a > div > span") &&
+        "無料ダウンロード" == document.querySelector("#variations > li > div > div > div > div > a > div > span").innerText) {
         document.querySelectorAll("#variations > li > div > div > div > div > a").forEach(item => {
             const link = item.href
             item.href = "javascript:void(0)"
