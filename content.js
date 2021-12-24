@@ -20,7 +20,7 @@ window.addEventListener("load", () => {
                 })
                 window.location.href = link
             })
-            item.style.display ="block"
         })
     }
+    document.querySelectorAll("#variations > li > div > div > div > div > a").forEach(item => item.style.display = "block")
 })
