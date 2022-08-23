@@ -1,4 +1,4 @@
-const linkPath = "#variations > li > div > div > div > div > a"
+const linkPath = "#variations > li > div.variation-cart > a"
 const linkPathMusic = ".nav-reverse.free-download";
 
 (() => {
@@ -6,12 +6,12 @@ const linkPathMusic = ".nav-reverse.free-download";
     document.querySelectorAll(linkPathMusic).forEach(item => item.style.display = "none")
 })()
 
-const title = document.querySelector("h2").innerText
-const author = document.querySelector(".u-text-ellipsis").innerText
+const title = document.querySelector(".item-name.bind-item-name").innerText
+const author = document.querySelector(".shop-name-label.display_title").innerText
 
 window.addEventListener("load", () => {
     let linkClickedFlgObject = {}
-    if(document.querySelector("#variations > li > div > div > div > div > a > div > span")) {
+    if(document.querySelector("#variations > li > div.variation-cart > a > div > span")) {
         document.querySelectorAll(linkPath).forEach(item => {
             linkClickedFlgObject[item.href] = false
             if("無料ダウンロード" == item.firstElementChild.innerText) {
